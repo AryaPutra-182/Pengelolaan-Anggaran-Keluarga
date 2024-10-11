@@ -107,6 +107,9 @@
       <footer>Contact us +6241748178743</footer>
     </section>
 
+    <!-- Elemen Toast -->
+    <div id="snackbar">Data berhasil disimpan!</div>
+
     <script>
       let sidebar = document.querySelector(".sidebar");
       let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -116,6 +119,24 @@
           sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
         } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       };
+
+      // Fungsi untuk menampilkan toast/snackbar
+      function showToast(message) {
+        var x = document.getElementById("snackbar");
+        x.textContent = message; // Menampilkan pesan dinamis
+        x.className = "show";
+        setTimeout(function () {
+          x.className = x.className.replace("show", "");
+        }, 3000);
+      }
+
+      // Menangani form submit dan menampilkan toast
+      document
+        .querySelector(".family-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          showToast("Data berhasil disimpan!");
+        });
     </script>
   </body>
 </html>
