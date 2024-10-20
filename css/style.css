@@ -13,6 +13,7 @@
   width: 240px;
   background: #2b0000;
   transition: all 0.5s ease;
+  overflow: hidden; /* Agar konten tidak terpotong di sidebar */
 }
 .sidebar.active {
   width: 60px;
@@ -95,11 +96,15 @@
   width: calc(100% - 240px);
   left: 240px;
   transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
 }
+
 .sidebar.active ~ .home-section {
   width: calc(100% - 60px);
   left: 60px;
 }
+
 .home-section nav {
   display: flex;
   justify-content: space-between;
@@ -140,14 +145,15 @@ nav .sidebar-button i {
   height: 50px;
   min-width: 190px;
 }
+
 .home-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 100px; /* Tambahkan padding untuk memberi ruang di bawah header */
-  height: calc(100vh - 80px); /* Kurangi tinggi header dari tinggi layar */
+  padding-top: 100px;
+  flex: 1;
 }
 
 h1 {
@@ -177,12 +183,15 @@ p {
   height: 100px;
   border-radius: 10px;
 }
+
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 180vh;
+  background-color: #2b0000;
   color: rgb(255, 255, 255);
   font-size: 14px;
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  position: relative;
 }
 
 /* Menyusun tombol secara rapi */
@@ -223,7 +232,7 @@ footer {
 }
 
 .btn-edit {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
   color: white;
 }
 
@@ -263,6 +272,7 @@ nav .profile-details .admin_name {
   text-decoration: none;
   color: white;
 }
+
 /* Form styling */
 .family-form {
   background-color: #fff;
@@ -308,6 +318,72 @@ nav .profile-details .admin_name {
   background-color: #45a049;
 }
 
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
 /* Responsive Media Query */
 @media (max-width: 1240px) {
   .sidebar {
@@ -321,7 +397,6 @@ nav .profile-details .admin_name {
     left: 60px;
   }
   .sidebar.active ~ .home-section {
-    /* width: calc(100% - 220px); */
     overflow: hidden;
     left: 220px;
   }
@@ -334,6 +409,47 @@ nav .profile-details .admin_name {
     left: 220px;
   }
 }
+/* Styling untuk Pop-up Konfirmasi */
+.popup-box {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Background transparency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button#yes-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+button#no-button {
+  background-color: #f44336;
+  color: white;
+}
 
 @media (max-width: 700px) {
   nav .profile-details {
@@ -343,10 +459,23 @@ nav .profile-details .admin_name {
     height: 50px;
     min-width: 40px;
   }
+
+  /* Penyesuaian untuk tombol login di sidebar agar lebih kecil di layar kecil */
+  .login-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .home-content {
+    padding-top: 80px;
+  }
 }
 @media (max-width: 550px) {
   .profile-details {
     display: none !important;
+  }
+  .login-button-container {
+    padding: 0 10px;
   }
 }
 @media (max-width: 400px) {

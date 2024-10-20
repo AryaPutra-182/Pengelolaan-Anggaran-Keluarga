@@ -36,5 +36,16 @@
         </div>
       </div>
     </div>
+
+    <script>
+      document
+        .querySelector(".login-btn")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          const username = document.querySelector('input[type="text"]').value;
+          localStorage.setItem("username", username);
+          alert("Login successful! Welcome, " + username);
+        });
+    </script>
   </body>
 </html>
