@@ -19,32 +19,32 @@
       </div>
       <ul class="nav-links">
         <li>
-          <a href="index.html">
+          <a href="dashboard.php">
             <i class="bx bx-home-alt"></i>
             <span class="links_name">Home</span>
           </a>
         </li>
         <li>
-          <a href="dashboard.html">
+          <a href="content.php">
             <i class="bx bx-bar-chart-alt-2"></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name">Managemen</span>
           </a>
         </li>
         <li>
-          <a href="tabungan.html" class="active">
+          <a href="tabungan.php" class="active">
             <i class="bx bx-money"></i>
             <span class="links_name">Jumlah Tabungan</span>
           </a>
         </li>
         <li>
-          <a href="tambahkeluarga.html">
+          <a href="tambahkeluarga.php">
             <i class="bx bx-laugh"></i>
             <span class="links_name">Keluarga</span>
           </a>
         </li>
       </ul>
       <div class="login-button-container">
-        <a href="login.html"><button class="login-button">Login</button></a>
+        <a href="login.php"><button class="login-button">Login</button></a>
       </div>
     </div>
 
@@ -68,7 +68,6 @@
     </section>
 
     <script>
-      // Sidebar toggle script from your existing structure
       let sidebar = document.querySelector(".sidebar");
       let sidebarBtn = document.querySelector(".sidebarBtn");
       sidebarBtn.onclick = function () {
@@ -78,7 +77,6 @@
         } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       };
 
-      // Example of how to store and retrieve savings data using localStorage
       function getTabungan() {
         const tabungan = localStorage.getItem("totalTabungan");
         return tabungan ? parseFloat(tabungan) : 0;
@@ -91,11 +89,8 @@
       document.addEventListener("DOMContentLoaded", function () {
         const totalTabunganElement = document.getElementById("total-tabungan");
         const addTabunganBtn = document.getElementById("add-tabungan-btn");
-
-        // Display initial tabungan
         totalTabunganElement.textContent = getTabungan();
 
-        // Add event listener for adding tabungan
         addTabunganBtn.addEventListener("click", function () {
           const newTabungan = prompt(
             "Masukkan jumlah tabungan yang ingin ditambahkan:"

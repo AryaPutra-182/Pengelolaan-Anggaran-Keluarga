@@ -20,15 +20,15 @@
       </div>
       <ul class="nav-links">
         <li>
-          <a href="index.html" class="active">
+          <a href="dashboard.php" class="active">
             <i class="bx bx-home-alt"></i>
             <span class="links_name">Home</span>
           </a>
         </li>
         <li>
-          <a href="dashboard.html">
+          <a href="content.php">
             <i class="bx bx-bar-chart-alt-2"></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name">Managemen</span>
           </a>
         </li>
         <li>
@@ -39,7 +39,7 @@
         </li>
       </ul>
       <div class="login-button-container">
-        <a href="login.html"><button class="login-button">Login</button></a>
+        <a href="login.php"><button class="login-button">Login</button></a>
       </div>
     </div>
 

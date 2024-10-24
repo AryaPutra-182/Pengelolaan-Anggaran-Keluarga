@@ -19,7 +19,7 @@
       </div>
       <ul class="nav-links">
         <li>
-          <a href="index.html" class="active">
+          <a href="dashboard.php" class="active">
             <i class="bx bx-home-alt"></i>
             <span class="links_name">Home</span>
           </a>
@@ -27,18 +27,18 @@
         <li>
           <a href="#">
             <i class="bx bx-bar-chart-alt-2"></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name">Managemen</span>
           </a>
         </li>
         <li>
-          <a href="tambahkeluarga.html">
+          <a href="tambahkeluarga.php">
             <i class="bx bx-laugh"></i>
             <span class="links_name">Keluarga</span>
           </a>
         </li>
       </ul>
       <div class="login-button-container">
-        <a href="login.html"><button class="login-button">Login</button></a>
+        <a href="login.php"><button class="login-button">Login</button></a>
       </div>
     </div>
 
@@ -56,21 +56,19 @@
         <div class="finance-buttons">
           <button
             class="btn"
-            onclick="window.location.href='jumlahTabungan.html'"
+            onclick="window.location.href='jumlahTabungan.php'"
           >
             Jumlah Tabungan
           </button>
 
-          <button class="btn">Jumlah Hutang</button>
           <button
             class="btn"
-            onclick="window.location.href='jumlahPemasukan.html'"
+            onclick="window.location.href='jumlahPemasukan.php'"
           >
             Pengeluaran Bulan Ini
           </button>
 
           <button class="btn">Pengeluaran Bulan Ini</button>
-          <button class="btn">Biaya Pendidikan</button>
           <button class="btn">Biaya Bulanan</button>
           <button class="btn">Saldo Total</button>
         </div>

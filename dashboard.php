@@ -24,20 +24,20 @@
           </a>
         </li>
         <li>
-          <a href="dashboard.html">
+          <a href="content.php">
             <i class="bx bx-bar-chart-alt-2"></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name">Managemen</span>
           </a>
         </li>
         <li>
-          <a href="tambahkeluarga.html">
+          <a href="tambahkeluarga.php">
             <i class="bx bx-laugh"></i>
             <span class="links_name">Keluarga</span>
           </a>
         </li>
       </ul>
       <div class="login-button-container">
-        <a href="login.html">
+        <a href="login.php">
           <button class="login-button">Login</button>
         </a>
       </div>

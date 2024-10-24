@@ -16,23 +16,13 @@
         <h1>SMART FAMILY</h1>
         <h3>ATUR BUDGET KELUARGA ANDA</h3>
         <div class="login-box">
-          <form>
+          <form id="loginForm">
             <input type="text" placeholder="USERNAME" required />
             <input type="password" placeholder="PASSWORD" required />
-            <a href="#" class="forgot-password">LUPA KATA SANDI ?</a>
             <button type="submit" class="login-btn">Login</button>
           </form>
-          <p>Login with</p>
-          <div class="social-login">
-            <button class="google-btn"><i class="fab fa-google"></i></button>
-            <button class="facebook-btn">
-              <i class="fab fa-facebook-f"></i>
-            </button>
-            <button class="twitter-btn">
-              <i class="fab fa-x-twitter"></i>
-            </button>
-          </div>
-          <a href="register.html" class="create-account">CREATE ACCOUNT</a>
+
+          <a href="register.php" class="create-account">CREATE ACCOUNT</a>
         </div>
       </div>
     </div>
@@ -43,8 +33,20 @@
         .addEventListener("click", function (event) {
           event.preventDefault();
           const username = document.querySelector('input[type="text"]').value;
-          localStorage.setItem("username", username);
-          alert("Login successful! Welcome, " + username);
+          const password = document.querySelector(
+            'input[type="password"]'
+          ).value;
+
+          // Simulasi login berhasil
+          if (username && password) {
+            localStorage.setItem("username", username);
+            alert("Login successful! Welcome, " + username);
+
+            // Arahkan ke halaman dashboard.html
+            window.location.href = "dashboard.php";
+          } else {
+            alert("Please enter valid username and password.");
+          }
         });
     </script>
   </body>

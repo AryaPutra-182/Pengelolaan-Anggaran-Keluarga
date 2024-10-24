@@ -18,32 +18,32 @@
       </div>
       <ul class="nav-links">
         <li>
-          <a href="index.html">
+          <a href="dashboard.php">
             <i class="bx bx-home-alt"></i>
             <span class="links_name">Home</span>
           </a>
         </li>
         <li>
-          <a href="dashboard.html">
+          <a href="content.php">
             <i class="bx bx-bar-chart-alt-2"></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name">Managemen</span>
           </a>
         </li>
         <li>
-          <a href="pemasukan.html" class="active">
+          <a href="pemasukan.php" class="active">
             <i class="bx bx-money"></i>
             <span class="links_name">Pemasukan Bulan Ini</span>
           </a>
         </li>
         <li>
-          <a href="tambahkeluarga.html">
+          <a href="tambahkeluarga.php">
             <i class="bx bx-laugh"></i>
             <span class="links_name">Keluarga</span>
           </a>
         </li>
       </ul>
       <div class="login-button-container">
-        <a href="login.html"><button class="login-button">Login</button></a>
+        <a href="login.php"><button class="login-button">Login</button></a>
       </div>
     </div>
 
