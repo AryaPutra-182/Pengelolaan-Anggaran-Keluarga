@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id'])) {
           </a>
         </li>
       </ul>
-      <!-- Logout button container positioned at the bottom of the sidebar -->
+    
       <div class="logout-button-container">
         <a href="logout.php"><button class="logout-button">Logout</button></a>
       </div>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="sidebar-button">
           <i class="bx bx-menu sidebarBtn"></i>
         </div>
-        <div class="profile-details">Profile</div>
+        <div class="profile-details">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span></div>
       </nav>
 
       <div class="home-content">
@@ -112,8 +112,6 @@ if (!isset($_SESSION['user_id'])) {
             <button type="submit" class="btn btn-simpan">Simpan Data</button>
           </div>
         </form>
-
-        <!-- Pop-up Box for Confirmation -->
         <div id="confirm-popup" class="popup-box" style="display: none;">
           <div class="popup-content">
             <p>Apakah Anda yakin ingin menyimpan data ini?</p>
@@ -121,20 +119,14 @@ if (!isset($_SESSION['user_id'])) {
             <button id="no-button">Tidak</button>
           </div>
         </div>
-
-        <!-- Display for entered family data -->
         <h2>Data Keluarga</h2>
         <div id="family-data"></div>
       </div>
 
       <footer>Contact us +6241748178743</footer>
     </section>
-
-    <!-- Toast Notification Element -->
     <div id="snackbar" style="visibility: hidden;">Data berhasil disimpan!</div>
-
    <script>
-    // Sidebar toggle functionality
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
     sidebarBtn.onclick = function () {
@@ -145,8 +137,6 @@ if (!isset($_SESSION['user_id'])) {
         sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       }
     };
-
-    // Function to show toast/snackbar notification
     function showToast(message) {
       var x = document.getElementById("snackbar");
       x.textContent = message;
@@ -156,28 +146,24 @@ if (!isset($_SESSION['user_id'])) {
       }, 3000);
     }
 
-    // Handle form submission with confirmation pop-up
+
     document.querySelector(".family-form").addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form from submitting directly
+      event.preventDefault();
 
-      // Display confirmation pop-up
+   
       const confirmPopup = document.getElementById("confirm-popup");
-      confirmPopup.style.display = "flex"; // Show pop-up
+      confirmPopup.style.display = "flex"; 
 
-      // If user clicks "Yes"
       document.getElementById("yes-button").onclick = function () {
-        confirmPopup.style.display = "none"; // Hide pop-up
+        confirmPopup.style.display = "none"; 
 
-        // Show toast notification
         showToast("Data berhasil disimpan!");
 
-        // Retrieve form values
         const nama = document.getElementById("nama").value;
         const tanggalLahir = document.getElementById("tanggal-lahir").value;
         const hubungan = document.getElementById("hubungan").value;
         const alamat = document.getElementById("alamat").value;
 
-        // Display entered data
         const familyDataDiv = document.getElementById("family-data");
         const dataHTML = `
           <p><strong>Nama:</strong> ${nama}</p>
@@ -188,13 +174,11 @@ if (!isset($_SESSION['user_id'])) {
         `;
         familyDataDiv.innerHTML += dataHTML;
 
-        // Reset the form after submission
         document.querySelector(".family-form").reset();
       };
 
-      // If user clicks "No"
       document.getElementById("no-button").onclick = function () {
-        confirmPopup.style.display = "none"; // Hide pop-up
+        confirmPopup.style.display = "none"; 
       };
     });
   

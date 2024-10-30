@@ -5,8 +5,6 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-
-// Add your existing code here
 ?>
 
 <!DOCTYPE html>
@@ -22,12 +20,12 @@ if (!isset($_SESSION['user_id'])) {
     />
   </head>
   <body>
-    <!-- Sidebar copied from your existing structure -->
     <div class="sidebar">
       <div class="logo-details">
         <i class="bx bx-home-smile"></i>
         <span class="logo_name">SmartFamily</span>
       </div>
+
       <ul class="nav-links">
         <li>
           <a href="dashboard.php">
@@ -65,7 +63,7 @@ if (!isset($_SESSION['user_id'])) {
           <i class="bx bx-menu sidebarBtn"></i>
         </div>
         <div class="profile-details">
-          <span class="admin_name">Profile</span>
+          <span class="admin_name">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span></span>
         </div>
       </nav>
 

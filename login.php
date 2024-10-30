@@ -1,21 +1,14 @@
 <?php
 session_start();
 
-// Dummy login validation (replace with your actual login logic)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Replace this check with your actual login validation logic
     if ($username === 'validUser' && $password === 'validPassword') {
-        // Store user data in session variables
         $_SESSION['user_id'] = 1;
         $_SESSION['username'] = $username;
-
-        // Set a custom cookie to greet the user
-        setcookie("username", $username, time() + 3600, "/"); // Expires in 1 hour
-
-        // Redirect to dashboard
+        setcookie("username", $username, time() + 3600, "/"); 
         header("Location: dashboard.php");
         exit();
     } else {
@@ -45,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" class="login-btn">Login</button>
                 </form>
                 
-                <!-- Display error message if credentials are incorrect -->
                 <?php if (!empty($errorMessage)): ?>
                     <p style="color:red;"><?php echo $errorMessage; ?></p>
                 <?php endif; ?>

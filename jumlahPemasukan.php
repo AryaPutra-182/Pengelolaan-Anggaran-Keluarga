@@ -6,7 +6,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Add your existing code here
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +25,7 @@ if (!isset($_SESSION['user_id'])) {
       <div class="logo-details">
         <i class="bx bx-home-smile"></i>
         <span class="logo_name">SmartFamily</span>
+        
       </div>
       <ul class="nav-links">
         <li>
@@ -53,6 +53,7 @@ if (!isset($_SESSION['user_id'])) {
           </a>
         </li>
       </ul>
+     
       <div class="login-button-container">
         <a href="login.php"><button class="login-button">Login</button></a>
       </div>
@@ -64,7 +65,7 @@ if (!isset($_SESSION['user_id'])) {
           <i class="bx bx-menu sidebarBtn"></i>
         </div>
         <div class="profile-details">
-          <span class="admin_name">Profile</span>
+          <span class="admin_name">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span></span>
         </div>
       </nav>
 
@@ -122,7 +123,7 @@ if (!isset($_SESSION['user_id'])) {
         const incomeList = document.getElementById("income-list");
         const incomes = getIncomes();
 
-        incomeList.innerHTML = ""; // Clear the list
+        incomeList.innerHTML = ""; 
         incomes.forEach((income, index) => {
           const listItem = document.createElement("li");
           listItem.textContent = `${income.tanggal}: Rp${income.jumlah} - ${income.sumber}`;
@@ -133,7 +134,7 @@ if (!isset($_SESSION['user_id'])) {
       document
         .getElementById("income-form")
         .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent form from refreshing the page
+          event.preventDefault();
 
           const tanggal = document.getElementById("tanggal").value;
           const jumlah = document.getElementById("jumlah").value;
@@ -141,7 +142,6 @@ if (!isset($_SESSION['user_id'])) {
 
           const incomes = getIncomes();
 
-          // Add new income
           incomes.push({ tanggal, jumlah, sumber });
 
           saveIncomes(incomes);

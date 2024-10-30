@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id'])) {
         </li>
       </ul>
 
-      <!-- Logout button container positioned at the bottom of the sidebar -->
+     
       <div class="logout-button-container">
         <a href="logout.php"><button class="logout-button">Logout</button></a>
       </div>
@@ -88,7 +88,6 @@ if (!isset($_SESSION['user_id'])) {
     </section>
 
     <script>
-      // Sidebar toggle functionality
       let sidebar = document.querySelector(".sidebar");
       let sidebarBtn = document.querySelector(".sidebarBtn");
       sidebarBtn.onclick = function () {
