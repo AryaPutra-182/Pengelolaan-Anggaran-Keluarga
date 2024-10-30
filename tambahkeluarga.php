@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,8 +47,9 @@
           </a>
         </li>
       </ul>
-      <div class="login-button-container">
-        <a href="login.php"><button class="login-button">Login</button></a>
+      <!-- Logout button container positioned at the bottom of the sidebar -->
+      <div class="logout-button-container">
+        <a href="logout.php"><button class="logout-button">Logout</button></a>
       </div>
     </div>
 
@@ -103,16 +113,16 @@
           </div>
         </form>
 
-        <!-- Pop-up Box untuk Konfirmasi -->
-        <div id="confirm-popup" style="display: none">
-          <div>
+        <!-- Pop-up Box for Confirmation -->
+        <div id="confirm-popup" class="popup-box" style="display: none;">
+          <div class="popup-content">
             <p>Apakah Anda yakin ingin menyimpan data ini?</p>
             <button id="yes-button">Ya</button>
             <button id="no-button">Tidak</button>
           </div>
         </div>
 
-        <!-- Tempat untuk menampilkan data yang sudah diinput -->
+        <!-- Display for entered family data -->
         <h2>Data Keluarga</h2>
         <div id="family-data"></div>
       </div>
@@ -120,74 +130,74 @@
       <footer>Contact us +6241748178743</footer>
     </section>
 
-    <!-- Elemen Toast -->
-    <div id="snackbar" style="visibility: hidden">Data berhasil disimpan!</div>
+    <!-- Toast Notification Element -->
+    <div id="snackbar" style="visibility: hidden;">Data berhasil disimpan!</div>
 
-    <script>
-      let sidebar = document.querySelector(".sidebar");
-      let sidebarBtn = document.querySelector(".sidebarBtn");
-      sidebarBtn.onclick = function () {
-        sidebar.classList.toggle("active");
-        if (sidebar.classList.contains("active")) {
-          sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-        } else {
-          sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
+   <script>
+    // Sidebar toggle functionality
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else {
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+      }
+    };
+
+    // Function to show toast/snackbar notification
+    function showToast(message) {
+      var x = document.getElementById("snackbar");
+      x.textContent = message;
+      x.style.visibility = "visible";
+      setTimeout(function () {
+        x.style.visibility = "hidden";
+      }, 3000);
+    }
+
+    // Handle form submission with confirmation pop-up
+    document.querySelector(".family-form").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form from submitting directly
+
+      // Display confirmation pop-up
+      const confirmPopup = document.getElementById("confirm-popup");
+      confirmPopup.style.display = "flex"; // Show pop-up
+
+      // If user clicks "Yes"
+      document.getElementById("yes-button").onclick = function () {
+        confirmPopup.style.display = "none"; // Hide pop-up
+
+        // Show toast notification
+        showToast("Data berhasil disimpan!");
+
+        // Retrieve form values
+        const nama = document.getElementById("nama").value;
+        const tanggalLahir = document.getElementById("tanggal-lahir").value;
+        const hubungan = document.getElementById("hubungan").value;
+        const alamat = document.getElementById("alamat").value;
+
+        // Display entered data
+        const familyDataDiv = document.getElementById("family-data");
+        const dataHTML = `
+          <p><strong>Nama:</strong> ${nama}</p>
+          <p><strong>Tanggal Lahir:</strong> ${tanggalLahir}</p>
+          <p><strong>Hubungan:</strong> ${hubungan}</p>
+          <p><strong>Alamat:</strong> ${alamat}</p>
+          <hr>
+        `;
+        familyDataDiv.innerHTML += dataHTML;
+
+        // Reset the form after submission
+        document.querySelector(".family-form").reset();
       };
 
-      // Fungsi untuk menampilkan toast/snackbar
-      function showToast(message) {
-        var x = document.getElementById("snackbar");
-        x.textContent = message;
-        x.style.visibility = "visible";
-        setTimeout(function () {
-          x.style.visibility = "hidden";
-        }, 3000);
-      }
-
-      // Menangani form submit
-      document
-        .querySelector(".family-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Mencegah submit langsung
-
-          // Ambil nilai dari form
-          const nama = document.getElementById("nama").value;
-          const tanggalLahir = document.getElementById("tanggal-lahir").value;
-          const hubungan = document.getElementById("hubungan").value;
-          const alamat = document.getElementById("alamat").value;
-
-          // Tampilkan konfirmasi dengan pop-up
-          const confirmPopup = document.getElementById("confirm-popup");
-          confirmPopup.style.display = "block"; // Tampilkan pop-up
-
-          // Jika user memilih "Ya"
-          document.getElementById("yes-button").onclick = function () {
-            confirmPopup.style.display = "none"; // Sembunyikan pop-up
-
-            // Tampilkan toast
-            showToast("Data berhasil disimpan!");
-
-            // Tampilkan data yang diinputkan
-            const familyDataDiv = document.getElementById("family-data");
-            const dataHTML = `
-                    <p><strong>Nama:</strong> ${nama}</p>
-                    <p><strong>Tanggal Lahir:</strong> ${tanggalLahir}</p>
-                    <p><strong>Hubungan:</strong> ${hubungan}</p>
-                    <p><strong>Alamat:</strong> ${alamat}</p>
-                    <hr>
-                `;
-            familyDataDiv.innerHTML += dataHTML;
-
-            // Reset form setelah submit
-            document.querySelector(".family-form").reset();
-          };
-
-          // Jika user memilih "Tidak"
-          document.getElementById("no-button").onclick = function () {
-            confirmPopup.style.display = "none"; // Sembunyikan pop-up
-          };
-        });
-    </script>
+      // If user clicks "No"
+      document.getElementById("no-button").onclick = function () {
+        confirmPopup.style.display = "none"; // Hide pop-up
+      };
+    });
+  
+   </script>
   </body>
 </html>

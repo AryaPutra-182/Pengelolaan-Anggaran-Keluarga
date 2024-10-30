@@ -1,14 +1,22 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="assets/icon.png" />
     <link rel="stylesheet" href="css/style.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Family</title>
+    <title>Smart Family Dashboard</title>
   </head>
   <body>
     <div class="sidebar">
@@ -26,7 +34,7 @@
         <li>
           <a href="content.php">
             <i class="bx bx-bar-chart-alt-2"></i>
-            <span class="links_name">Managemen</span>
+            <span class="links_name">Management</span>
           </a>
         </li>
         <li>
@@ -36,9 +44,9 @@
           </a>
         </li>
       </ul>
-      <div class="login-button-container">
-        <a href="login.php">
-          <button class="login-button">Login</button>
+      <div class="logout-button-container">
+        <a href="logout.php">
+          <button class="logout-button">Logout</button>
         </a>
       </div>
     </div>
@@ -48,16 +56,16 @@
           <i class="bx bx-menu sidebarBtn"></i>
         </div>
         <div class="profile-details">
-          <span class="admin_name">Profile</span>
+          <span class="admin_name">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
         </div>
       </nav>
       <div class="home-content">
         <h1>SMART <span>FAMILY</span></h1>
-        <p>Atur anggaran keluarga anda</p>
+        <p>Manage your family's budget</p>
         <div class="image-group">
-          <img src="image/family1.jpg" alt="" />
-          <img src="image/family2.jpg" alt="" />
-          <img src="image/family3.jpg" alt="" />
+          <img src="image/family1.jpg" alt="Family Image 1" />
+          <img src="image/family2.jpg" alt="Family Image 2" />
+          <img src="image/family3.jpg" alt="Family Image 3" />
         </div>
       </div>
       <footer>Contact us +6241748178743</footer>
@@ -73,13 +81,6 @@
           sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
       };
-      document.addEventListener("DOMContentLoaded", function () {
-        const username = localStorage.getItem("username");
-        if (username) {
-          document.querySelector(".admin_name").textContent =
-            "Welcome, " + username;
-        }
-      });
     </script>
   </body>
 </html>

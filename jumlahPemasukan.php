@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Add your existing code here
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +41,7 @@
           </a>
         </li>
         <li>
-          <a href="pemasukan.php" class="active">
+          <a href="jumlahPemasukan.php" class="active">
             <i class="bx bx-money"></i>
             <span class="links_name">Pemasukan Bulan Ini</span>
           </a>

@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,18 +36,20 @@
         <li>
           <a href="#">
             <i class="bx bx-bar-chart-alt-2"></i>
-            <span class="links_name">Managemen</span>
+            <span class="links_name">Management</span>
           </a>
         </li>
         <li>
           <a href="tambahkeluarga.php">
             <i class="bx bx-laugh"></i>
-            <span class="links_name">Keluarga</span>
+            <span class="links_name">Family</span>
           </a>
         </li>
       </ul>
-      <div class="login-button-container">
-        <a href="login.php"><button class="login-button">Login</button></a>
+
+      <!-- Logout button container positioned at the bottom of the sidebar -->
+      <div class="logout-button-container">
+        <a href="logout.php"><button class="logout-button">Logout</button></a>
       </div>
     </div>
 
@@ -48,7 +59,7 @@
           <i class="bx bx-menu sidebarBtn"></i>
         </div>
         <div class="profile-details">
-          <span class="admin_name">Profile</span>
+          <span class="admin_name">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
         </div>
       </nav>
       <div class="home-content">
@@ -75,22 +86,19 @@
       </div>
       <footer>Contact us +6241748178743</footer>
     </section>
+
     <script>
+      // Sidebar toggle functionality
       let sidebar = document.querySelector(".sidebar");
       let sidebarBtn = document.querySelector(".sidebarBtn");
       sidebarBtn.onclick = function () {
         sidebar.classList.toggle("active");
         if (sidebar.classList.contains("active")) {
           sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-        } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-      };
-      document.addEventListener("DOMContentLoaded", function () {
-        const username = localStorage.getItem("username");
-        if (username) {
-          document.querySelector(".admin_name").textContent =
-            "Welcome, " + username;
+        } else {
+          sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
-      });
+      };
     </script>
   </body>
 </html>

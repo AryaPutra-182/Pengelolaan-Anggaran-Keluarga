@@ -13,24 +13,11 @@
         <h3>ATUR BUDGET KELUARGA ANDA</h3>
         <div class="login-box">
           <h2>Register</h2>
-<<<<<<< HEAD
-          <form>
-            <input type="text" placeholder="USERNAME" required />
-            <input type="email" placeholder="Email" required />
+          <form action="register.php" method="POST">
+            <input type="text" name="username" placeholder="USERNAME" required />
+            <input type="email" name="email" placeholder="Email" required />
             <div class="password-container">
-              <input type="password" placeholder="PASSWORD" required />
-=======
-          <form id="registerForm">
-            <input type="text" id="username" placeholder="USERNAME" required />
-            <input type="email" id="email" placeholder="Email" required />
-            <div class="password-container">
-              <input
-                type="password"
-                id="password"
-                placeholder="PASSWORD"
-                required
-              />
->>>>>>> 11cfe0e (update terbaru)
+              <input type="password" name="password" placeholder="PASSWORD" required />
               <span class="toggle-password"><i class="fas fa-eye"></i></span>
             </div>
             <button type="submit" class="create-account-btn">
@@ -40,55 +27,14 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-=======
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script>
-      // Fungsi untuk toggle visibility password
-      document
-        .querySelector(".toggle-password")
-        .addEventListener("click", function () {
-          const passwordInput = document.getElementById("password");
-          const icon = this.querySelector("i");
-          if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-          } else {
-            passwordInput.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-          }
-        });
-
-      // Fungsi untuk handle form submission
-      document
-        .getElementById("registerForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Mencegah reload halaman
-
-          // Ambil nilai input
-          const username = document.getElementById("username").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-
-          if (username && email && password) {
-            // Simpan data pengguna di localStorage
-            localStorage.setItem("username", username);
-            localStorage.setItem("email", email);
-            localStorage.setItem("password", password);
-
-            alert("Account created successfully! Please login.");
-
-            // Arahkan ke halaman login atau dashboard
-            window.location.href = "login.html";
-          } else {
-            alert("Please fill in all fields.");
-          }
-        });
+      document.querySelector('.toggle-password').addEventListener('click', function () {
+        const passwordInput = document.querySelector('input[name="password"]');
+        const passwordType = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', passwordType);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+      });
     </script>
->>>>>>> 11cfe0e (update terbaru)
   </body>
 </html>
