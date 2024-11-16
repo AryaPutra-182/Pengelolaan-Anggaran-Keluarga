@@ -11,17 +11,38 @@
       <div class="login-container">
         <h1>SMART FAMILY</h1>
         <h3>ATUR BUDGET KELUARGA ANDA</h3>
+ 
         <div class="login-box">
-          <h2>Register</h2>
-          <form action="register.php" method="POST">
-            <input type="text" name="username" placeholder="USERNAME" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <div class="password-container">
-              <input type="password" name="password" placeholder="PASSWORD" required />
-              <span class="toggle-password"><i class="fas fa-eye"></i></span>
-            </div>
-            <button type="submit" class="create-account-btn">
-              CREATE ACCOUNT
+            <h3>Register</h3>
+            <form action="register-proses.php" method="post">
+              <input
+                class="input"
+                type="email"
+                name="email"
+                placeholder="Email"
+              />
+              <input
+                class="input"
+                type="text"
+                name="username"
+                placeholder="Username"
+              />
+              <input
+                class="input"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+              <button
+                type="submit"
+                class="btn_login"
+                name="register"
+                id="register"
+              >
+                Register
+              </button>
+            </form>
+          </div>
             </button>
           </form>
         </div>

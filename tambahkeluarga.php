@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
@@ -58,7 +58,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="sidebar-button">
           <i class="bx bx-menu sidebarBtn"></i>
         </div>
-        <div class="profile-details">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span></div>
+        <div class="profile-details">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>S</div>
       </nav>
 
       <div class="home-content">

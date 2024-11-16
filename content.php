@@ -1,11 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,12 +77,10 @@ if (!isset($_SESSION['user_id'])) {
             class="btn"
             onclick="window.location.href='jumlahPemasukan.php'"
           >
-            Pengeluaran Bulan Ini
+            Pemasukan Bulan Ini
           </button>
 
           <button class="btn">Pengeluaran Bulan Ini</button>
-          <button class="btn">Biaya Bulanan</button>
-          <button class="btn">Saldo Total</button>
         </div>
       </div>
       <footer>Contact us +6241748178743</footer>

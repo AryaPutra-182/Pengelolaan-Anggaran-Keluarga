@@ -1,23 +1,3 @@
-<?php
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if ($username === 'validUser' && $password === 'validPassword') {
-        $_SESSION['user_id'] = 1;
-        $_SESSION['username'] = $username;
-        setcookie("username", $username, time() + 3600, "/"); 
-        header("Location: dashboard.php");
-        exit();
-    } else {
-        echo "Invalid login credentials!";
-    }
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,19 +11,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-container">
             <h1>SMART FAMILY</h1>
             <h3>ATUR BUDGET KELUARGA ANDA</h3>
-            <div class="login-box">
-                <form action="login.php" method="POST">
-                    <input type="text" name="username" placeholder="USERNAME" required>
-                    <input type="password" name="password" placeholder="PASSWORD" required>
-                    <button type="submit" class="login-btn">Login</button>
-                </form>
-                
-                <?php if (!empty($errorMessage)): ?>
-                    <p style="color:red;"><?php echo $errorMessage; ?></p>
-                <?php endif; ?>
-                
-                <a href="register.php" class="create-account">CREATE ACCOUNT</a>
-            </div>
+            <main>
+        <div class="center">
+          <div class="login-box">
+            <h3>Login</h3>
+            <form action="login-proses.php" method="post">
+              <input
+                class="input"
+                type="text"
+                name="username"
+                placeholder="Username"
+              />
+              <input
+                class="input"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+              <button type="submit" class="btn_login" name="login" id="login">
+                Login
+              </button>
+            </form>
+            <a href="register.php" class="link-register"> Register Disini</a>
+          </div>
+        </div>
+      </main>
         </div>
     </div>
 </body>
