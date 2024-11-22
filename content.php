@@ -43,7 +43,7 @@ if (!isset($_SESSION['username'])) {
         <li>
           <a href="tambahkeluarga.php">
             <i class="bx bx-laugh"></i>
-            <span class="links_name">Family</span>
+            <span class="links_name">Keluarga</span>
           </a>
         </li>
       </ul>
@@ -80,7 +80,12 @@ if (!isset($_SESSION['username'])) {
             Pemasukan Bulan Ini
           </button>
 
-          <button class="btn">Pengeluaran Bulan Ini</button>
+          <button
+            class="btn"
+            onclick="window.location.href='jumlahPengeluaran.php'"
+          >
+            Penegeluaran Bulan Ini
+          </button>
         </div>
       </div>
       <footer>Contact us +6241748178743</footer>

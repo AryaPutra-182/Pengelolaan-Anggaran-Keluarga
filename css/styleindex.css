@@ -1,4 +1,3 @@
-/* Reset CSS */
 * {
   margin: 0;
   padding: 0;
@@ -12,8 +11,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #3a0d0d; /* Warna latar belakang seperti di gambar */
-  color: #fff; /* Warna teks putih */
+  background-color: #3a0d0d;
+  color: #fff;
 }
 
 .container {
@@ -35,7 +34,7 @@ body {
 
 .highlight {
   font-weight: lighter;
-  color: #ffc107; /* Warna kuning emas */
+  color: #ffc107;
 }
 
 /* Tombol Login */

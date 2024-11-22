@@ -109,9 +109,9 @@ $pemasukanList = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <td><?php echo htmlspecialchars($pemasukan['date']); ?></td>
                         <td><?php echo htmlspecialchars($pemasukan['jumlah_pemasukan']); ?></td>
                         <td><?php echo htmlspecialchars($pemasukan['asal_dana']); ?></td>
-                        <td>
-                            <a href="editPemasukan.php?id=<?php echo $pemasukan['id_pemasukan']; ?>">Edit</a> |
-                            <a href="jumlahPemasukan.php?delete_id=<?php echo $pemasukan['id_pemasukan']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                        <td >
+               <a  href="editPemasukan.php?id=<?php echo $pemasukan['id_pemasukan']; ?>">      <button class="button-modif">Edit</button></a>
+                    <a  href="jumlahPemasukan.php?delete_id=<?php echo $pemasukan['id_pemasukan']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"> <button class="button-modif delete-btn">Hapus</button></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -1,5 +1,4 @@
 <?php
-// login-proses.php
 session_start();
 include 'koneksi.php';
 
@@ -13,7 +12,6 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($requestPassword, $row['password'])) {
-            // Menyimpan hanya `username` ke dalam session
             $_SESSION['username'] = $row['username'];
             header('location:dashboard.php');
             exit();

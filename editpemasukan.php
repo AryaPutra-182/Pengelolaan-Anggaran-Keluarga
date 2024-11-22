@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Dapatkan data pemasukan berdasarkan ID
 if (isset($_GET['id'])) {
     $id_pemasukan = $_GET['id'];
     $sql = "SELECT * FROM tb_pemasukan WHERE id_pemasukan='$id_pemasukan'";
@@ -23,7 +22,6 @@ if (isset($_GET['id'])) {
     exit();
 }
 
-// Proses update data pemasukan
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tanggal = $_POST['tanggal'];
     $jumlah = $_POST['jumlah'];

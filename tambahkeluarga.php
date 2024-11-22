@@ -58,7 +58,7 @@ if (!isset($_SESSION['username'])) {
         <div class="sidebar-button">
           <i class="bx bx-menu sidebarBtn"></i>
         </div>
-        <div class="profile-details">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>S</div>
+        <div class="profile-details">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span></div>
       </nav>
 
       <div class="home-content">

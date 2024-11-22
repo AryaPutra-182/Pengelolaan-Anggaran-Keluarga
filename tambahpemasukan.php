@@ -2,19 +2,16 @@
 session_start();
 include 'koneksi.php';
 
-// Pastikan pengguna sudah login
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
 
-// Proses penyimpanan data pemasukan
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tanggal = $_POST['tanggal'];
     $jumlah = $_POST['jumlah'];
     $sumber = $_POST['sumber'];
 
-    // Query untuk memasukkan data tanpa kolom `username`
     $sql = "INSERT INTO tb_pemasukan (date, jumlah_pemasukan, asal_dana) 
             VALUES ('$tanggal', '$jumlah', '$sumber')";
 
