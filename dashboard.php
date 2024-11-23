@@ -1,24 +1,35 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
 include 'koneksi.php'; 
 
-$query_pemasukan = "SELECT SUM(jumlah_pemasukan) AS total_pemasukan FROM tb_pemasukan";
-$result_pemasukan = mysqli_query($koneksi, $query_pemasukan); // Gunakan $koneksi
+// Ambil user_id dari sesi
+$user_id = $_SESSION['user_id'];
+
+// Query Total Pemasukan
+$query_pemasukan = "SELECT SUM(jumlah_pemasukan) AS total_pemasukan FROM tb_pemasukan WHERE user_id = ?";
+$stmt_pemasukan = mysqli_prepare($koneksi, $query_pemasukan);
+mysqli_stmt_bind_param($stmt_pemasukan, "i", $user_id);
+mysqli_stmt_execute($stmt_pemasukan);
+$result_pemasukan = mysqli_stmt_get_result($stmt_pemasukan);
 $total_pemasukan = mysqli_fetch_assoc($result_pemasukan)['total_pemasukan'] ?? 0;
 
-$query_pengeluaran = "SELECT SUM(pengeluaran) AS total_pengeluaran FROM tb_pengeluaran";
-$result_pengeluaran = mysqli_query($koneksi, $query_pengeluaran); // Gunakan $koneksi
+// Query Total Pengeluaran
+$query_pengeluaran = "SELECT SUM(pengeluaran) AS total_pengeluaran FROM tb_pengeluaran WHERE user_id = ?";
+$stmt_pengeluaran = mysqli_prepare($koneksi, $query_pengeluaran);
+mysqli_stmt_bind_param($stmt_pengeluaran, "i", $user_id);
+mysqli_stmt_execute($stmt_pengeluaran);
+$result_pengeluaran = mysqli_stmt_get_result($stmt_pengeluaran);
 $total_pengeluaran = mysqli_fetch_assoc($result_pengeluaran)['total_pengeluaran'] ?? 0;
 
+// Hitung Saldo
 $saldo = $total_pemasukan - $total_pengeluaran;
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

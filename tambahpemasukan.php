@@ -2,23 +2,36 @@
 session_start();
 include 'koneksi.php';
 
-if (!isset($_SESSION['username'])) {
+// Periksa apakah sesi pengguna valid
+if (!isset($_SESSION['username']) || !isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Ambil data dari input form
     $tanggal = $_POST['tanggal'];
     $jumlah = $_POST['jumlah'];
     $sumber = $_POST['sumber'];
+    $user_id = $_SESSION['user_id']; // Ambil user_id dari sesi
 
-    $sql = "INSERT INTO tb_pemasukan (date, jumlah_pemasukan, asal_dana) 
-            VALUES ('$tanggal', '$jumlah', '$sumber')";
+    // Gunakan parameterized query untuk keamanan
+    $sql = "INSERT INTO tb_pemasukan (date, jumlah_pemasukan, asal_dana, user_id) 
+            VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($koneksi, $sql);
 
-    if (mysqli_query($koneksi, $sql)) {
-        echo "<script>alert('Pemasukan berhasil disimpan!'); window.location='jumlahPemasukan.php';</script>";
+    if ($stmt) {
+        // Bind parameter ke statement
+        mysqli_stmt_bind_param($stmt, "sisi", $tanggal, $jumlah, $sumber, $user_id);
+
+        // Eksekusi statement
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<script>alert('Pemasukan berhasil disimpan!'); window.location='jumlahPemasukan.php';</script>";
+        } else {
+            echo "<script>alert('Terjadi kesalahan saat menyimpan data: " . mysqli_error($koneksi) . "');</script>";
+        }
     } else {
-        echo "<script>alert('Terjadi kesalahan saat menyimpan data: " . mysqli_error($koneksi) . "');</script>";
+        echo "<script>alert('Gagal menyiapkan statement: " . mysqli_error($koneksi) . "');</script>";
     }
 }
 ?>

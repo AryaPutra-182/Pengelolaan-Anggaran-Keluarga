@@ -1,22 +1,25 @@
 <?php
 session_start();
-include 'koneksi.php';
 
 // Pastikan pengguna sudah login
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
+include 'koneksi.php';
+
+// Ambil user_id dari sesi
+$user_id = $_SESSION['user_id'];
+
 // Cek apakah ada permintaan untuk menghapus data
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
-    $delete_sql = "DELETE FROM tb_pemasukan WHERE id_pemasukan = ?";
+    $delete_sql = "DELETE FROM tb_pemasukan WHERE id_pemasukan = ? AND user_id = ?";
     $stmt = mysqli_prepare($koneksi, $delete_sql);
-    mysqli_stmt_bind_param($stmt, "i", $delete_id);
+    mysqli_stmt_bind_param($stmt, "ii", $delete_id, $user_id);
     
     if (mysqli_stmt_execute($stmt)) {
-        // Berhasil dihapus, redirect ke halaman yang sama untuk memuat ulang data
         header("Location: jumlahPemasukan.php");
         exit();
     } else {
@@ -24,9 +27,12 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
-// Ambil semua data pemasukan dari `tb_pemasukan` tanpa filter pengguna
-$sql = "SELECT * FROM tb_pemasukan";
-$result = mysqli_query($koneksi, $sql);
+// Ambil semua data pemasukan untuk pengguna yang sedang login
+$sql = "SELECT * FROM tb_pemasukan WHERE user_id = ?";
+$stmt = mysqli_prepare($koneksi, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
 if (!$result) {
     die("Error dalam query: " . mysqli_error($koneksi));
@@ -34,7 +40,6 @@ if (!$result) {
 
 $pemasukanList = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -104,17 +109,27 @@ $pemasukanList = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <th>Sumber</th>
                     <th>Aksi</th>
                 </tr>
-                <?php foreach ($pemasukanList as $pemasukan): ?>
+                <?php if (!empty($pemasukanList)): ?>
+                    <?php foreach ($pemasukanList as $pemasukan): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($pemasukan['date']); ?></td>
+                            <td>Rp <?php echo number_format($pemasukan['jumlah_pemasukan'], 0, ',', '.'); ?></td>
+                            <td><?php echo htmlspecialchars($pemasukan['asal_dana']); ?></td>
+                            <td>
+                                <a href="editPemasukan.php?id=<?php echo $pemasukan['id_pemasukan']; ?>">
+                                    <button class="button-modif">Edit</button>
+                                </a>
+                                <a href="jumlahPemasukan.php?delete_id=<?php echo $pemasukan['id_pemasukan']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                    <button class="button-modif delete-btn">Hapus</button>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($pemasukan['date']); ?></td>
-                        <td><?php echo htmlspecialchars($pemasukan['jumlah_pemasukan']); ?></td>
-                        <td><?php echo htmlspecialchars($pemasukan['asal_dana']); ?></td>
-                        <td >
-               <a  href="editPemasukan.php?id=<?php echo $pemasukan['id_pemasukan']; ?>">      <button class="button-modif">Edit</button></a>
-                    <a  href="jumlahPemasukan.php?delete_id=<?php echo $pemasukan['id_pemasukan']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"> <button class="button-modif delete-btn">Hapus</button></a>
-                        </td>
+                        <td colspan="4">Tidak ada data pemasukan.</td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </table>
         </div>
     </section>
