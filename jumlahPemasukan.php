@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Pastikan pengguna sudah login
 if (!isset($_SESSION['username']) || !isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -9,10 +8,8 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['user_id'])) {
 
 include 'koneksi.php';
 
-// Ambil user_id dari sesi
 $user_id = $_SESSION['user_id'];
 
-// Cek apakah ada permintaan untuk menghapus data
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
     $delete_sql = "DELETE FROM tb_pemasukan WHERE id_pemasukan = ? AND user_id = ?";
@@ -27,7 +24,6 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
-// Ambil semua data pemasukan untuk pengguna yang sedang login
 $sql = "SELECT * FROM tb_pemasukan WHERE user_id = ?";
 $stmt = mysqli_prepare($koneksi, $sql);
 mysqli_stmt_bind_param($stmt, "i", $user_id);

@@ -6,7 +6,6 @@ if (isset($_POST['login'])) {
     $requestUsername = mysqli_real_escape_string($koneksi, $_POST['username']); // Mencegah SQL Injection
     $requestPassword = $_POST['password'];
 
-    // Ambil data user berdasarkan username
     $sql = "SELECT user_id, username, password FROM tb_users WHERE username = ?";
     $stmt = mysqli_prepare($koneksi, $sql);
     mysqli_stmt_bind_param($stmt, "s", $requestUsername);
@@ -16,9 +15,7 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
 
-        // Verifikasi password
         if (password_verify($requestPassword, $row['password'])) {
-            // Simpan data pengguna dalam sesi
             $_SESSION['user_id'] = $row['user_id']; // Simpan user_id
             $_SESSION['username'] = $row['username']; // Simpan username
 

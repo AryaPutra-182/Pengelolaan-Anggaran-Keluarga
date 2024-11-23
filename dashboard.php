@@ -8,7 +8,6 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['user_id'])) {
 
 include 'koneksi.php'; 
 
-// Ambil user_id dari sesi
 $user_id = $_SESSION['user_id'];
 
 // Query Total Pemasukan

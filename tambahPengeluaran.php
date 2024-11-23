@@ -2,7 +2,6 @@
 session_start();
 include 'koneksi.php';
 
-// Validasi sesi
 if (!isset($_SESSION['user_id'])) {
     echo "<script>
         alert('Sesi Anda telah berakhir. Silakan login kembali.');
@@ -17,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kegunaan = $_POST['kegunaan'];
     $user_id = $_SESSION['user_id']; // Ambil user_id dari sesi
 
-    // Query untuk menyimpan data
     $sql = "INSERT INTO tb_pengeluaran (tanggal, pengeluaran, kegunaan, user_id) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($koneksi, $sql);
     mysqli_stmt_bind_param($stmt, "sisi", $tanggal, $pengeluaran, $kegunaan, $user_id);
