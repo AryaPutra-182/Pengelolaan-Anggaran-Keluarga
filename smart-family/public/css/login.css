@@ -78,84 +78,27 @@ input[type="password"]:focus {
   box-shadow: 0 0 8px #7dff65;
 }
 
-/* Button Styles */
-.btn_login {
-  background-color: #ffffff; /* Blue color */
-  color: rgb(0, 0, 0);
+.login-btn {
+  background-color: #00a86b; /* Hijau modern */
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s ease;
-}
-
-/* Hover effect */
-.btn_login:hover {
-  background-color: #5f0606; /* Purple color */
-  transform: scale(1.05); /* Slightly increase the button size on hover */
-}
-
-/* Focus effect */
-.btn_login:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(38, 117, 252, 0.7); /* Add a blue shadow on focus */
-}
-/* General Button Styles */
-.btn_login,
-.btn_register {
-  background-color: #2575fc; /* Blue color for Login */
   color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
+  padding: 12px 20px;
+  border-radius: 25px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s ease;
-  width: 100%; /* Make buttons responsive */
-}
-
-/* Specific style for Register button */
-.btn_register {
-  background-color: #28a745; /* Green color for Register */
-}
-
-/* Hover effect */
-.btn_login:hover,
-.btn_register:hover {
-  background-color: #0056b3; /* Darker blue for Login on hover */
-}
-
-/* Register Hover effect */
-.btn_register:hover {
-  background-color: #218838; /* Darker green for Register on hover */
-}
-
-/* Focus and active state */
-.btn_login:focus,
-.btn_register:focus,
-.btn_login:active,
-.btn_register:active {
-  outline: none;
-  transform: scale(0.98);
-}
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  background-color: #fbdada;
-  border: 1px solid #fff;
-  border-radius: 20px;
-  padding: 10px;
-  margin: 10px 0;
+  margin-top: 15px;
   width: 100%;
-  text-align: center;
-  outline: none;
-  color: black;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+.login-btn:hover {
+  background-color: #007c57;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
 /* Link Register */
 .create-account {
   color: #007bff;
@@ -192,6 +135,22 @@ input[type="password"] {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in-out;
+}
+
+.social-login button:hover {
+  transform: scale(1.1);
+}
+
+.google-btn i {
+  color: #db4437;
+}
+
+.facebook-btn i {
+  color: #4267b2;
+}
+
+.twitter-btn i {
+  color: #1da1f2;
 }
 
 /* Create Account Link */

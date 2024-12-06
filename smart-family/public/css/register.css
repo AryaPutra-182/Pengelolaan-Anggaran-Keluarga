@@ -69,21 +69,6 @@ input[type="password"] {
   font-size: 14px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  background-color: #fbdada;
-  border: 1px solid #fff;
-  border-radius: 20px;
-  padding: 10px;
-  margin: 10px 0;
-  width: 100%;
-  text-align: center;
-  outline: none;
-  color: black;
-  font-size: 14px;
-}
-
 .password-container {
   position: relative;
 }
